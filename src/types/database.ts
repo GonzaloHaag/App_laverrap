@@ -1,7 +1,3 @@
-export type ApiResponse = {
-    status:boolean;
-    message:string;
-}
 export type Json =
   | string
   | number
@@ -55,28 +51,34 @@ export type Database = {
         Row: {
           category: Database["public"]["Enums"]["services_category"]
           created_at: string
+          description: string | null
           duration: number | null
           id: number
           name: string
           price: string
+          status: Database["public"]["Enums"]["services_status"]
           user_id: string
         }
         Insert: {
           category: Database["public"]["Enums"]["services_category"]
           created_at?: string
+          description?: string | null
           duration?: number | null
           id?: number
           name: string
           price: string
+          status: Database["public"]["Enums"]["services_status"]
           user_id: string
         }
         Update: {
           category?: Database["public"]["Enums"]["services_category"]
           created_at?: string
+          description?: string | null
           duration?: number | null
           id?: number
           name?: string
           price?: string
+          status?: Database["public"]["Enums"]["services_status"]
           user_id?: string
         }
         Relationships: []
@@ -160,6 +162,7 @@ export type Database = {
     }
     Enums: {
       services_category: "basic" | "complete" | "premium"
+      services_status: "active" | "inactive"
       vehicles_type: "car" | "pickup" | "motorcycle"
     }
     CompositeTypes: {
@@ -289,6 +292,7 @@ export const Constants = {
   public: {
     Enums: {
       services_category: ["basic", "complete", "premium"],
+      services_status: ["active", "inactive"],
       vehicles_type: ["car", "pickup", "motorcycle"],
     },
   },

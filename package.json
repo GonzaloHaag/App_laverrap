@@ -8,13 +8,17 @@
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "gen-types": "pnpx supabase gen types typescript --project-id eljmofeleobkxjggxxga > ./src/types.ts"
+    "gen-types": "pnpx supabase gen types typescript --project-id eljmofeleobkxjggxxga > ./src/database/types.ts"
   },
   "dependencies": {
+    "@radix-ui/react-dialog": "^1.1.14",
     "@radix-ui/react-label": "^2.1.7",
+    "@radix-ui/react-select": "^2.2.5",
     "@radix-ui/react-slot": "^1.2.3",
     "@supabase/supabase-js": "^2.51.0",
     "@tailwindcss/vite": "^4.1.11",
+    "@tanstack/react-query": "^4.40.1",
+    "@tanstack/react-table": "^8.21.3",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "lucide-react": "^0.525.0",

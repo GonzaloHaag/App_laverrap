@@ -1,5 +1,5 @@
 import { supabaseClient } from "@/supabase"
-import type { ApiResponse } from "@/types"
+import type { ApiResponse } from "@/types";
 
 export const loginUser = async({ email, password }:{ email:string, password:string }): Promise<ApiResponse> => {
     if(!email || !password) {
