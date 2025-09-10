@@ -1,14 +1,14 @@
 import { createBrowserRouter } from "react-router-dom";
 import { AuthLayout, MainLayout } from "@/layouts";
-import { HomePage, LoginPage, RegisterPage, ServicesPage } from "@/pages";
+import { ClientsPage, HomePage, LoginPage, RegisterPage, ServicesPage } from "@/pages";
 
 export const router = createBrowserRouter([
     {
-        path:"/autenticacion",
+        path:"/auth",
         Component:AuthLayout,
         children: [
-            { path:"ingreso", Component: LoginPage },
-            { path:"registro", Component: RegisterPage }
+            { path:"login", Component: LoginPage },
+            { path:"register", Component: RegisterPage }
         ]
     },
     {
@@ -16,7 +16,8 @@ export const router = createBrowserRouter([
         Component:MainLayout,
         children: [
             { index:true, Component: HomePage },
-            { path:'servicios', Component: ServicesPage }
+            { path:'servicios', Component: ServicesPage },
+            { path:'clientes', Component: ClientsPage }
         ]
     },
     { path:'*', element:<div>Not found page</div> }

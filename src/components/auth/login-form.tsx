@@ -32,6 +32,7 @@ export const LoginForm = () => {
                         <Input
                             id="email"
                             type="email"
+                            disabled={isSubmitting}
                             placeholder="m@example.com"
                             {...register('email', { required: { value: true, message: 'El email es requerido' } })}
                         />
@@ -56,6 +57,7 @@ export const LoginForm = () => {
                         <Input
                             id="password"
                             type="password"
+                            disabled={isSubmitting}
                             {...register('password', {
                                 required: { value: true, message: 'La contraseña es requerida' },
                                 minLength: {value:6, message:'La contraseña debe tener minimo 6 caracteres'}
@@ -69,7 +71,7 @@ export const LoginForm = () => {
                     }
                 </div>
                 <div className="flex flex-col gap-3">
-                    <Button type="submit" className="w-full">
+                    <Button type="submit" className="w-full" disabled={isSubmitting}>
                         {isSubmitting ? <LoaderCircleIcon className="animate-spin" /> : 'Ingresar'}
                     </Button>
                     <Button type="button" variant="outline" className="w-full">

@@ -7,10 +7,10 @@ export type Json =
   | Json[]
 
 export type Database = {
-  // Allows to automatically instanciate createClient with right options
+  // Allows to automatically instantiate createClient with right options
   // instead of createClient<Database, { PostgrestVersion: 'XX' }>(URL, KEY)
   __InternalSupabase: {
-    PostgrestVersion: "12.2.3 (519615d)"
+    PostgrestVersion: "13.0.5"
   }
   public: {
     Tables: {
@@ -22,6 +22,7 @@ export type Database = {
           id: number
           name: string
           phone: string
+          status: Database["public"]["Enums"]["client_status"]
           surname: string | null
           user_id: string
         }
@@ -32,6 +33,7 @@ export type Database = {
           id?: number
           name: string
           phone: string
+          status?: Database["public"]["Enums"]["client_status"]
           surname?: string | null
           user_id: string
         }
@@ -42,10 +44,19 @@ export type Database = {
           id?: number
           name?: string
           phone?: string
+          status?: Database["public"]["Enums"]["client_status"]
           surname?: string | null
           user_id?: string
         }
-        Relationships: []
+        Relationships: [
+          {
+            foreignKeyName: "clients_user_id_fkey1"
+            columns: ["user_id"]
+            isOneToOne: false
+            referencedRelation: "users"
+            referencedColumns: ["id"]
+          },
+        ]
       }
       services: {
         Row: {
@@ -80,6 +91,38 @@ export type Database = {
           price?: string
           status?: Database["public"]["Enums"]["services_status"]
           user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "services_user_id_fkey1"
+            columns: ["user_id"]
+            isOneToOne: false
+            referencedRelation: "users"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      users: {
+        Row: {
+          created_at: string
+          email: string
+          id: string
+          name: string | null
+          username: string | null
+        }
+        Insert: {
+          created_at?: string
+          email: string
+          id: string
+          name?: string | null
+          username?: string | null
+        }
+        Update: {
+          created_at?: string
+          email?: string
+          id?: string
+          name?: string | null
+          username?: string | null
         }
         Relationships: []
       }
@@ -151,6 +194,13 @@ export type Database = {
             referencedRelation: "clients"
             referencedColumns: ["id"]
           },
+          {
+            foreignKeyName: "washed_user_id_fkey1"
+            columns: ["user_id"]
+            isOneToOne: false
+            referencedRelation: "users"
+            referencedColumns: ["id"]
+          },
         ]
       }
     }
@@ -161,6 +211,7 @@ export type Database = {
       [_ in never]: never
     }
     Enums: {
+      client_status: "Activo" | "Inactivo"
       services_category: "basic" | "complete" | "premium"
       services_status: "active" | "inactive"
       vehicles_type: "car" | "pickup" | "motorcycle"
@@ -291,6 +342,7 @@ export type CompositeTypes<
 export const Constants = {
   public: {
     Enums: {
+      client_status: ["Activo", "Inactivo"],
       services_category: ["basic", "complete", "premium"],
       services_status: ["active", "inactive"],
       vehicles_type: ["car", "pickup", "motorcycle"],

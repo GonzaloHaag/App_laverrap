@@ -20,6 +20,6 @@ export const MainLayout = () => {
         )
     }
     return (
-        <Navigate to={'/autenticacion/ingreso'} />
+        <Navigate to={'/auth/login'} />
     )
 }
