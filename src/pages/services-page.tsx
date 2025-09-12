@@ -1,5 +1,5 @@
 import {
-  CardService,
+  CardPage,
   FiltersServices,
   FormService,
   TableServices,
@@ -54,25 +54,25 @@ export function ServicesPage() {
   return (
     <div className="flex flex-col gap-y-4">
       <section className="grid grid-cols-4 gap-6">
-        <CardService
+        <CardPage
           title="Total Servicios"
           Icon={DropletsIcon}
           description={6}
           colorIcon="text-primary"
         />
-        <CardService
+        <CardPage
           title="Servicios activos"
           Icon={ShieldCheckIcon}
           description={6}
           colorIcon="text-green-600"
         />
-        <CardService
+        <CardPage
           title="Más utilizado"
           Icon={CrownIcon}
           description="Básico"
           colorIcon="text-yellow-500"
         />
-        <CardService
+        <CardPage
           title="Precio promedio"
           Icon={DollarSignIcon}
           description="$25.600"
@@ -95,7 +95,7 @@ export function ServicesPage() {
                   <PlusCircleIcon /> Nuevo servicio
                 </Button>
               </DialogTrigger>
-              <DialogContent>
+              <DialogContent className="sm:max-w-[600px]">
                 <DialogHeader>
                   <DialogTitle>Nuevo servicio</DialogTitle>
                   <DialogDescription>

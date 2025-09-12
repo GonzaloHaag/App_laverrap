@@ -1,13 +1,13 @@
 import { type LucideIcon } from "lucide-react";
-import { Card, CardAction, CardContent, CardHeader, CardTitle } from "../ui/card";
+import { Card, CardAction, CardContent, CardHeader, CardTitle } from "./ui/card";
 
-interface CardServiceProps {
+interface CardPageProps {
     title: string;
     Icon: LucideIcon;
     description: string | number;
     colorIcon:string;
 }
-export const CardService = ({ title, Icon, description,colorIcon }: CardServiceProps) => {
+export const CardPage = ({ title, Icon, description,colorIcon }: CardPageProps) => {
     return (
         <Card>
             <CardHeader>

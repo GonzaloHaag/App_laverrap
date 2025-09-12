@@ -13,3 +13,26 @@ export const statusLabels: Record<string, string> = {
   active: "Activo",
   inactive: "Inactivo",
 };
+
+export const VEHICLES_TYPES = [
+  {
+    id: 1,
+    type: "car",
+    label: "Auto",
+  },
+  {
+    id: 2,
+    type: "pickup",
+    label: "Camioneta",
+  },
+  {
+    id: 3,
+    type: "motorcycle",
+    label: "Moto",
+  },
+  {
+    id: 4,
+    type: "other",
+    label: "Otro",
+  },
+];

@@ -20,33 +20,39 @@ export type Database = {
           description: string | null
           email: string | null
           id: number
+          model_brand: string | null
           name: string
+          patent: string
           phone: string
           status: Database["public"]["Enums"]["client_status"]
-          surname: string | null
           user_id: string
+          vehicle_type: Database["public"]["Enums"]["vehicles_type"]
         }
         Insert: {
           created_at?: string
           description?: string | null
           email?: string | null
           id?: number
+          model_brand?: string | null
           name: string
+          patent: string
           phone: string
           status?: Database["public"]["Enums"]["client_status"]
-          surname?: string | null
           user_id: string
+          vehicle_type: Database["public"]["Enums"]["vehicles_type"]
         }
         Update: {
           created_at?: string
           description?: string | null
           email?: string | null
           id?: number
+          model_brand?: string | null
           name?: string
+          patent?: string
           phone?: string
           status?: Database["public"]["Enums"]["client_status"]
-          surname?: string | null
           user_id?: string
+          vehicle_type?: Database["public"]["Enums"]["vehicles_type"]
         }
         Relationships: [
           {
@@ -125,47 +131,6 @@ export type Database = {
           username?: string | null
         }
         Relationships: []
-      }
-      vehicles: {
-        Row: {
-          brand: string
-          client_id: number
-          created_at: string
-          icon: string | null
-          id: number
-          model: string | null
-          patent: string
-          type: Database["public"]["Enums"]["vehicles_type"]
-        }
-        Insert: {
-          brand: string
-          client_id: number
-          created_at?: string
-          icon?: string | null
-          id?: number
-          model?: string | null
-          patent: string
-          type: Database["public"]["Enums"]["vehicles_type"]
-        }
-        Update: {
-          brand?: string
-          client_id?: number
-          created_at?: string
-          icon?: string | null
-          id?: number
-          model?: string | null
-          patent?: string
-          type?: Database["public"]["Enums"]["vehicles_type"]
-        }
-        Relationships: [
-          {
-            foreignKeyName: "vehicles_client_id_fkey"
-            columns: ["client_id"]
-            isOneToOne: false
-            referencedRelation: "clients"
-            referencedColumns: ["id"]
-          },
-        ]
       }
       washed: {
         Row: {
