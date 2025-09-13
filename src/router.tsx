@@ -1,6 +1,6 @@
 import { createBrowserRouter } from "react-router-dom";
 import { AuthLayout, MainLayout } from "@/layouts";
-import { ClientsPage, HomePage, LoginPage, RegisterPage, ServicesPage } from "@/pages";
+import { ClientsPage, HomePage, LoginPage, RegisterPage, ServicesPage, WashedPage } from "@/pages";
 
 export const router = createBrowserRouter([
     {
@@ -17,7 +17,8 @@ export const router = createBrowserRouter([
         children: [
             { index:true, Component: HomePage },
             { path:'servicios', Component: ServicesPage },
-            { path:'clientes', Component: ClientsPage }
+            { path:'clientes', Component: ClientsPage },
+            { path:"lavados", Component: WashedPage }
         ]
     },
     { path:'*', element:<div>Not found page</div> }

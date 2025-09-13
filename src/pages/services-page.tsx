@@ -32,18 +32,22 @@ import {
   ShieldCheckIcon,
 } from "lucide-react";
 import { useCallback, useState } from "react";
+import { useSearchParams } from "react-router-dom";
 
 export function ServicesPage() {
   const [open, setOpen] = useState(false);
   const { session } = useAuth();
+  const [searchParams] = useSearchParams();
+
+  const searchValue = searchParams.get("search") || "";
   const handleCloseDialog = useCallback(() => {
     setOpen((prevState) => !prevState);
   }, []);
 
   const response = useQuery({
-    queryKey: ["services", session!.user.id],
+    queryKey: ["services", session!.user.id, searchValue],
     queryFn: async () => {
-      const response = await getAllServices({ userId: session!.user.id });
+      const response = await getAllServices({ userId: session!.user.id, searchValue });
       if (!response.status || !response.services) {
         throw new Error("Error al obtener los servicios");
       }

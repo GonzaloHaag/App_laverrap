@@ -32,18 +32,22 @@ import {
 import { useAuth } from "@/hooks/use-auth";
 import { useQuery } from "@tanstack/react-query";
 import { getAllClients } from "@/services/client";
+import { useSearchParams } from "react-router-dom";
 
 export function ClientsPage() {
   const [open, setOpen] = useState(false);
   const { session } = useAuth();
+  const [searchParams] = useSearchParams();
   const handleCloseDialog = useCallback(() => {
     setOpen((prevState) => !prevState);
   }, []);
 
+  const searchValue = searchParams.get("search") || "";
+
   const response = useQuery({
-    queryKey: ["clients", session!.user.id],
+    queryKey: ["clients", session!.user.id, searchValue],
     queryFn: async () => {
-      const response = await getAllClients({ userId: session!.user.id });
+      const response = await getAllClients({ userId: session!.user.id, searchValue });
       if (!response.status || !response.clients) {
         throw new Error("Error al obtener los clientes");
       }
