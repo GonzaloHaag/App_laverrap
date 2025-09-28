@@ -2,15 +2,11 @@ import { Link, useLocation } from "react-router-dom";
 import { Button, buttonVariants } from "./ui/button";
 import {
   AlignJustifyIcon,
-  CarIcon,
-  CogIcon,
-  DropletsIcon,
-  LayoutDashboardIcon,
-  Users2Icon,
+  CarIcon
 } from "lucide-react";
+import { HEADER_LINKS } from "@/lib/consts";
 
 export const Header = () => {
-
   const { pathname } = useLocation();
   return (
     <header>
@@ -27,34 +23,20 @@ export const Header = () => {
           </div>
         </Link>
         <div className="hidden md:flex items-center gap-x-4">
-          <Link
-            to={"/"}
-            title="dashboard"
-            className={`${pathname === "/" ? "bg-primary text-slate-100" : "bg-inherit"} ${buttonVariants({ size: "lg", variant: "outline" })}`}
-          >
-            <LayoutDashboardIcon /> Dashboard
-          </Link>
-          <Link
-            to={"/lavados"}
-            title="lavados"
-            className={`${pathname === "/lavados" ? "bg-primary text-slate-100" : "bg-inherit"} ${buttonVariants({ size: "lg", variant: "outline" })}`}
-          >
-            <DropletsIcon /> Lavados
-          </Link>
-          <Link
-            to={"/clientes"}
-            title="clientes"
-            className={`${pathname === "/clientes" ? "bg-primary text-slate-100" : "bg-inherit"} ${buttonVariants({ size: "lg", variant: "outline" })}`}
-          >
-            <Users2Icon /> Clientes
-          </Link>
-          <Link
-            to={"/servicios"}
-            title="servicios"
-            className={`${pathname === "/servicios" ? "bg-primary text-slate-100" : "bg-inherit"} ${buttonVariants({ size: "lg", variant: "outline" })}`}
-          >
-            <CogIcon /> Servicios
-          </Link>
+          {HEADER_LINKS.map((link) => (
+            <Link
+              key={link.id}
+              to={link.path}
+              title={link.title}
+              className={`${
+                pathname === link.path
+                  ? "bg-primary text-slate-100 hover:bg-primary/95 hover:text-slate-100"
+                  : "bg-inherit"
+              } ${buttonVariants({ size: "lg", variant: "outline" })}`}
+            >
+              <link.icon /> {link.title}
+            </Link>
+          ))}
         </div>
         <Button size={"icon"} variant={"outline"} className="flex md:hidden">
           <AlignJustifyIcon />

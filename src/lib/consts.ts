@@ -1,3 +1,5 @@
+import { CogIcon, DropletsIcon, LayoutDashboardIcon, Users2Icon } from "lucide-react";
+
 export const statusColors: Record<string, string> = {
   basic: "bg-gray-100 text-slate-700",
   complete: "bg-green-600 text-slate-100",
@@ -7,7 +9,7 @@ export const statusColors: Record<string, string> = {
 };
 
 export const statusLabels: Record<string, string> = {
-  complete: "Completado",
+  complete: "Completo",
   basic: "Básico",
   premium: "Premium",
   active: "Activo",
@@ -34,5 +36,33 @@ export const VEHICLES_TYPES = [
     id: 4,
     type: "other",
     label: "Otro",
+  },
+];
+
+
+export const HEADER_LINKS = [
+  {
+    id: 1,
+    path: "/",
+    title: "Dashboard",
+    icon: LayoutDashboardIcon,
+  },
+  {
+    id: 2,
+    path: "/lavados",
+    title: "Lavados",
+    icon: DropletsIcon,
+  },
+  {
+    id: 3,
+    path: "/clientes",
+    title: "Clientes",
+    icon: Users2Icon,
+  },
+  {
+    id: 4,
+    path: "/servicios",
+    title: "Servicios",
+    icon: CogIcon,
   },
 ];

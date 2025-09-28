@@ -1,10 +1,12 @@
 import { Button } from "../ui/button";
-import { EyeIcon, PencilIcon, PhoneIcon, TrashIcon } from "lucide-react";
+import {
+  EyeIcon,
+  PencilIcon,
+  PhoneIcon,
+} from "lucide-react";
 import { Badge } from "../ui/badge";
 import type { Client } from "@/types/client";
-import { deleteClientById } from "@/services/client";
-import { toast } from "sonner";
-import { useQueryClient } from "@tanstack/react-query";
+import { ButtonDelete } from "./button-delete";
 
 interface TableClientsProps {
   isLoading: boolean;
@@ -19,21 +21,7 @@ export const TableClients = ({
   clients,
   userId,
 }: TableClientsProps) => {
-  const queryClient = useQueryClient();
-  const onClickDeleteClientById = async (id: number) => {
-    if (window.confirm("Estás seguro de eliminar el cliente?")) {
-      const response = await deleteClientById({
-        clientId: id,
-        userId: userId,
-      });
-      if (!response.status) {
-        toast.error(response.message);
-        return;
-      }
-      toast.success(response.message);
-      await queryClient.invalidateQueries({ queryKey: ["clients", userId] });
-    }
-  };
+
   if (isLoading) {
     return (
       <tbody>
@@ -123,15 +111,7 @@ export const TableClients = ({
               >
                 <PencilIcon size={16} className="text-green-600" />
               </Button>
-              <Button
-                size={"icon"}
-                variant={"outline"}
-                title="Borrar"
-                className="ml-2"
-                onClick={() => onClickDeleteClientById(client.id)}
-              >
-                <TrashIcon size={16} className="text-red-600" />
-              </Button>
+              <ButtonDelete userId={userId} id={client.id} />
             </td>
           </tr>
         ))
