@@ -14,3 +14,4 @@ export { TableClients } from "./clients/table-clients";
 
 /** Home */
 export { ChartIncome } from "./home/chart-income";
+export { CardRecentServices } from "./home/card-recent-services";

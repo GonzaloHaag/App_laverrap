@@ -1,4 +1,4 @@
-import { CardPage, ChartIncome } from "@/components";
+import { CardPage, CardRecentServices, ChartIncome } from "@/components";
 import {
   Card,
   CardContent,
@@ -17,9 +17,9 @@ export function HomePage() {
           <CardDescription>Visualiza el desempeño diario con métricas clave de servicios, clientes, ingresos y vehículos.</CardDescription>
         </CardHeader>
         <CardContent>
-          <section className="grid grid-cols-4 gap-6">
+          <section className="grid grid-cols-[repeat(auto-fit,minmax(250px,1fr))] gap-6">
             <CardPage
-              title="Servicios"
+              title="Servicios completados"
               Icon={BubblesIcon}
               description={4}
               colorIcon="text-primary"
@@ -47,6 +47,7 @@ export function HomePage() {
       </Card>
       <div className="grid grid-cols-2 gap-6">
         <ChartIncome />
+        <CardRecentServices />
       </div>
     </section>
   );

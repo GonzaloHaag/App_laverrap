@@ -17,18 +17,6 @@ export const FiltersClients = () => {
           </SelectGroup>
         </SelectContent>
       </Select>
-      <Select>
-        <SelectTrigger className="w-[260px]">
-          <SelectValue placeholder="Seleccionar estado" />
-        </SelectTrigger>
-        <SelectContent>
-          <SelectGroup>
-            <SelectItem value="todos">Todos</SelectItem>
-            <SelectItem value="activos">Activos</SelectItem>
-            <SelectItem value="inactivos">Inactivos</SelectItem>
-          </SelectGroup>
-        </SelectContent>
-      </Select>
     </form>
   );
 };

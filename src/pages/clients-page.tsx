@@ -47,7 +47,10 @@ export function ClientsPage() {
   const response = useQuery({
     queryKey: ["clients", session!.user.id, searchValue],
     queryFn: async () => {
-      const response = await getAllClients({ userId: session!.user.id, searchValue });
+      const response = await getAllClients({
+        userId: session!.user.id,
+        searchValue,
+      });
       if (!response.status || !response.clients) {
         throw new Error("Error al obtener los clientes");
       }
@@ -57,7 +60,7 @@ export function ClientsPage() {
   });
   return (
     <section className="flex flex-col gap-y-4">
-      <section className="grid grid-cols-4 gap-6">
+      <section className="grid grid-cols-[repeat(auto-fit,minmax(250px,1fr))] gap-6">
         <CardPage
           title="Total clientes"
           Icon={UsersIcon}
@@ -146,6 +149,7 @@ export function ClientsPage() {
                 isLoading={response.isLoading}
                 isError={response.isError}
                 clients={response.data || []}
+                userId={session!.user.id}
               />
             </table>
           </div>

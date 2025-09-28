@@ -2,17 +2,38 @@ import { Button } from "../ui/button";
 import { EyeIcon, PencilIcon, PhoneIcon, TrashIcon } from "lucide-react";
 import { Badge } from "../ui/badge";
 import type { Client } from "@/types/client";
+import { deleteClientById } from "@/services/client";
+import { toast } from "sonner";
+import { useQueryClient } from "@tanstack/react-query";
 
 interface TableClientsProps {
   isLoading: boolean;
   isError: boolean;
   clients: Client[];
+  userId: string;
 }
+
 export const TableClients = ({
   isLoading,
   isError,
   clients,
+  userId,
 }: TableClientsProps) => {
+  const queryClient = useQueryClient();
+  const onClickDeleteClientById = async (id: number) => {
+    if (window.confirm("Estás seguro de eliminar el cliente?")) {
+      const response = await deleteClientById({
+        clientId: id,
+        userId: userId,
+      });
+      if (!response.status) {
+        toast.error(response.message);
+        return;
+      }
+      toast.success(response.message);
+      await queryClient.invalidateQueries({ queryKey: ["clients", userId] });
+    }
+  };
   if (isLoading) {
     return (
       <tbody>
@@ -75,8 +96,14 @@ export const TableClients = ({
             </td>
             <td className="px-6 py-3">5</td>
             <td className="px-6 py-3">
-              <Badge className={`bg-gray-300 ${client.status === "Activo" ? " text-green-600" : " text-red-500"}`}>
-                { client.status }
+              <Badge
+                className={`bg-gray-300 ${
+                  client.status === "Activo"
+                    ? " text-green-600"
+                    : " text-red-500"
+                }`}
+              >
+                {client.status}
               </Badge>
             </td>
             <td className="px-6 py-3">
@@ -88,7 +115,12 @@ export const TableClients = ({
               >
                 <EyeIcon />
               </Button>
-              <Button size={"icon"} variant={"outline"} title="Editar" className="ml-2">
+              <Button
+                size={"icon"}
+                variant={"outline"}
+                title="Editar"
+                className="ml-2"
+              >
                 <PencilIcon size={16} className="text-green-600" />
               </Button>
               <Button
@@ -96,6 +128,7 @@ export const TableClients = ({
                 variant={"outline"}
                 title="Borrar"
                 className="ml-2"
+                onClick={() => onClickDeleteClientById(client.id)}
               >
                 <TrashIcon size={16} className="text-red-600" />
               </Button>

@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { Button, buttonVariants } from "./ui/button";
 import {
   AlignJustifyIcon,
@@ -10,6 +10,8 @@ import {
 } from "lucide-react";
 
 export const Header = () => {
+
+  const { pathname } = useLocation();
   return (
     <header>
       <div className="container mx-auto px-4 min-h-16 flex items-center justify-between">
@@ -28,28 +30,28 @@ export const Header = () => {
           <Link
             to={"/"}
             title="dashboard"
-            className={buttonVariants({ size: "lg", variant: "outline" })}
+            className={`${pathname === "/" ? "bg-primary text-slate-100" : "bg-inherit"} ${buttonVariants({ size: "lg", variant: "outline" })}`}
           >
             <LayoutDashboardIcon /> Dashboard
           </Link>
           <Link
             to={"/lavados"}
             title="lavados"
-            className={buttonVariants({ size: "lg", variant: "outline" })}
+            className={`${pathname === "/lavados" ? "bg-primary text-slate-100" : "bg-inherit"} ${buttonVariants({ size: "lg", variant: "outline" })}`}
           >
             <DropletsIcon /> Lavados
           </Link>
           <Link
             to={"/clientes"}
             title="clientes"
-            className={buttonVariants({ size: "lg", variant: "outline" })}
+            className={`${pathname === "/clientes" ? "bg-primary text-slate-100" : "bg-inherit"} ${buttonVariants({ size: "lg", variant: "outline" })}`}
           >
             <Users2Icon /> Clientes
           </Link>
           <Link
             to={"/servicios"}
             title="servicios"
-            className={buttonVariants({ size: "lg", variant: "outline" })}
+            className={`${pathname === "/servicios" ? "bg-primary text-slate-100" : "bg-inherit"} ${buttonVariants({ size: "lg", variant: "outline" })}`}
           >
             <CogIcon /> Servicios
           </Link>

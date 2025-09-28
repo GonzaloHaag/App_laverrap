@@ -17,12 +17,12 @@ import {
 export const description = "A line chart"
 
 const chartData = [
-  { month: "January", desktop: 186 },
-  { month: "February", desktop: 305 },
-  { month: "March", desktop: 237 },
-  { month: "April", desktop: 73 },
-  { month: "May", desktop: 209 },
-  { month: "June", desktop: 214 },
+  { month: "Enero", ingresos: 186 },
+  { month: "Febrero", ingresos: 305 },
+  { month: "Marzo", ingresos: 237 },
+  { month: "Abril", ingresos: 73 },
+  { month: "Mayo", ingresos: 209 },
+  { month: "Junio", ingresos: 214 },
 ]
 
 const chartConfig = {
@@ -62,7 +62,7 @@ export const ChartIncome = () => {
               content={<ChartTooltipContent hideLabel />}
             />
             <Line
-              dataKey="desktop"
+              dataKey="ingresos"
               type="natural"
               stroke="var(--color-desktop)"
               strokeWidth={2}
